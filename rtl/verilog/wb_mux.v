@@ -49,6 +49,8 @@
 ////                                                              ////
 //////////////////////////////////////////////////////////////////////
 
+`timescale 1 ns / 1 ps
+
 module wb_mux
   #(parameter dw = 32,        // Data width
     parameter aw = 32,        // Address width
