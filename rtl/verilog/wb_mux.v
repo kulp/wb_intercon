@@ -86,13 +86,11 @@ module wb_mux
     input [num_slaves-1:0]     wbs_err_i,
     input [num_slaves-1:0]     wbs_rty_i);
 
-`include "verilog_utils.vh"
-
 ///////////////////////////////////////////////////////////////////////////////
 // Master/slave connection
 ///////////////////////////////////////////////////////////////////////////////
 
-   localparam slave_sel_bits = num_slaves > 1 ? `clog2(num_slaves) : 1;
+   localparam slave_sel_bits = num_slaves > 1 ? $clog2(num_slaves) : 1;
 
    reg  			 wbm_err;
    wire [slave_sel_bits-1:0] 	 slave_sel;
@@ -105,6 +103,14 @@ module wb_mux
 	 assign match[idx] = (wbm_adr_i & MATCH_MASK[idx*aw+:aw]) == MATCH_ADDR[idx*aw+:aw];
       end
    endgenerate
+
+   // priority decoder - "find first 1"
+   function ff1(input [num_slaves-1:0] match, input integer num_slaves);
+       integer i;
+       for(i=0; i<num_slaves; i=i+1)
+           if(match[i])
+               ff1 = i;
+   endfunction
 
    assign slave_sel = ff1(match, num_slaves);
 
