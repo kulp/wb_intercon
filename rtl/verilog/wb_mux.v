@@ -102,7 +102,7 @@ module wb_mux
 
    generate
       for(idx=0; idx<num_slaves ; idx=idx+1) begin : addr_match
-	 assign match[idx] = (wbm_adr_i & MATCH_MASK[idx*aw+:aw]) == MATCH_ADDR[idx*aw+:aw];
+         assign match[idx] = ~|((wbm_adr_i ^ MATCH_ADDR[idx*aw+:aw]) & MATCH_MASK[idx*aw+:aw]);
       end
    endgenerate
 
