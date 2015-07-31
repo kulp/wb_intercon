@@ -92,10 +92,10 @@ module wb_mux
 // Master/slave connection
 ///////////////////////////////////////////////////////////////////////////////
 
-   localparam slave_sel_bits = NUM_SLAVES > 1 ? $clog2(NUM_SLAVES) : 1;
+`define slave_sel_bits (NUM_SLAVES > 1 ? $clog2(NUM_SLAVES) : 1)
 
    reg  			 wbm_err;
-   wire [slave_sel_bits-1:0] 	 slave_sel;
+   wire [`slave_sel_bits-1:0] 	 slave_sel;
    wire [NUM_SLAVES-1:0] 	 match;
 
    genvar 			 idx;
