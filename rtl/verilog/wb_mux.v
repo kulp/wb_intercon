@@ -109,10 +109,10 @@ module wb_mux
 
     // priority decoder - "find first 1"
     function ff1(input [NUM_SLAVES-1:0] match, input integer num_slaves);
-       integer i;
-       for(i=0; i<num_slaves; i=i+1)
-           if(match[i])
-               ff1 = i;
+        integer i;
+        for(i=0; i<num_slaves; i=i+1)
+            if(match[i])
+                ff1 = i;
     endfunction
 
     assign slave_sel = ff1(match, NUM_SLAVES);
