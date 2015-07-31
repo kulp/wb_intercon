@@ -18,13 +18,14 @@
 /// an external watchdog is required to abort the transaction     ////
 ///                                                               ////
 /// Olof Kindgren, olof@opencores.org                             ////
+/// Darren Kulp, darren@kulp.ch                                   ////
 ///                                                               ////
 /// Todo:                                                         ////
 /// Registered master/slave connections                           ////
 /// Rewrite with System Verilog 2D arrays when tools support them ////
 //////////////////////////////////////////////////////////////////////
 ////                                                              ////
-//// Copyright (C) 2013 Authors and OPENCORES.ORG                 ////
+//// Copyright (C) 2013, 2015 Authors and OPENCORES.ORG           ////
 ////                                                              ////
 //// This source file may be used and distributed without         ////
 //// restriction provided that this copyright statement is not    ////
