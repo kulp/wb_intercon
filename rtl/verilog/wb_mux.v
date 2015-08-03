@@ -108,14 +108,17 @@ module wb_mux
     endgenerate
 
     // priority decoder - "find first 1"
-    function [`slave_sel_bits-1:0] ff1(input [NUM_SLAVES-1:0] match);
+    function integer ff1(input integer in, input integer width);
         integer i;
-        for(i=0; i<NUM_SLAVES; i=i+1)
-            if(match[i])
-                ff1 = i;
+        begin
+            ff1 = 0;
+            for(i=width-1; i>=0; i=i-1)
+                if(in[i])
+                    ff1 = i;
+        end
     endfunction
 
-    assign slave_sel = ff1(match);
+    assign slave_sel = ff1(match, NUM_SLAVES);
 
     always @(posedge wb_clk_i)
         wbm_err <= wbm_cyc_i & !(|match);
